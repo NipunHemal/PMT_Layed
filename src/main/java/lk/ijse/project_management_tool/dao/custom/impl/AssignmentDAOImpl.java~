@@ -1,0 +1,84 @@
+package lk.ijse.project_management_tool.dao.custom.impl;
+
+import lk.ijse.project_management_tool.dao.custom.AssignmentDAO;
+import lk.ijse.project_management_tool.dto.Assignment;
+import lk.ijse.project_management_tool.utils.CrudUtil;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+public class AssignmentDAOImpl implements AssignmentDAO {
+    public boolean save(Assignment assignment) throws SQLException, ClassNotFoundException {
+        String sql = "INSERT INTO assignments (employee_id, task_id, note, status) VALUES (?,?,?,?)";
+        return CrudUtil.execute(sql,
+                assignment.getEmployeeId(),
+                assignment.getTaskId(),
+                assignment.getNote(),
+                assignment.getStatus()
+        );
+    }
+
+    public boolean update(Assignment assignment) throws SQLException, ClassNotFoundException {
+        String sql = "UPDATE assignments SET note=?, status=? WHERE employee_id=? AND task_id=?";
+        return CrudUtil.execute(sql,
+                assignment.getNote(),
+                assignment.getStatus(),
+                assignment.getEmployeeId(),
+                assignment.getTaskId()
+        );
+    }
+
+    public boolean delete(Long employeeId, Long taskId) throws SQLException, ClassNotFoundException {
+        String sql = "DELETE FROM assignments WHERE employee_id=? AND task_id=?";
+        return CrudUtil.execute(sql, employeeId, taskId);
+    }
+
+    public ArrayList<Assignment> getAll() throws SQLException, ClassNotFoundException {
+        String sql = "SELECT * FROM assignments";
+        ResultSet resultSet = CrudUtil.execute(sql);
+        ArrayList<Assignment> assignments = new ArrayList<>();
+
+        while (resultSet.next()) {
+            assignments.add(new Assignment(
+                    resultSet.getLong("employee_id"),
+                    resultSet.getLong("task_id"),
+                    resultSet.getString("note"),
+                    resultSet.getString("status")
+            ));
+        }
+        return assignments;
+    }
+
+    public ArrayList<Assignment> getAssignmentsByEmployeeId(Long employeeId) throws SQLException, ClassNotFoundException {
+        String sql = "SELECT * FROM assignments WHERE employee_id=?";
+        ResultSet resultSet = CrudUtil.execute(sql, employeeId);
+        ArrayList<Assignment> assignments = new ArrayList<>();
+
+        while (resultSet.next()) {
+            assignments.add(new Assignment(
+                    resultSet.getLong("employee_id"),
+                    resultSet.getLong("task_id"),
+                    resultSet.getString("note"),
+                    resultSet.getString("status")
+            ));
+        }
+        return assignments;
+    }
+
+    public ArrayList<Assignment> getAssignmentsByTaskId(Long taskId) throws SQLException, ClassNotFoundException {
+        String sql = "SELECT * FROM assignments WHERE task_id=?";
+        ResultSet resultSet = CrudUtil.execute(sql, taskId);
+        ArrayList<Assignment> assignments = new ArrayList<>();
+
+        while (resultSet.next()) {
+            assignments.add(new Assignment(
+                    resultSet.getLong("employee_id"),
+                    resultSet.getLong("task_id"),
+                    resultSet.getString("note"),
+                    resultSet.getString("status")
+            ));
+        }
+        return assignments;
+    }
+}
