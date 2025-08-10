@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.project_management_tool.controller.TaskController">
+   <children>
+      <BorderPane layoutX="10.0" layoutY="10.0" stylesheets="@../../css/main.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <VBox spacing="10.0" style="-fx-background-color: #ffffff; -fx-padding: 10;" styleClass="rounded-lg">
+               <children>
+                  <HBox alignment="CENTER_LEFT" spacing="20">
+                     <children>
+                        <Label fx:id="lblTitle" style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #111827;" text="Mobile App Projects" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <HBox fx:id="imageLoader" alignment="CENTER_RIGHT" spacing="-10">
+                           <children>
+                              <Circle radius="18" style="-fx-fill: #EF4444; -fx-stroke: white; -fx-stroke-width: 2;" />
+                              <Circle radius="18" style="-fx-fill: #10B981; -fx-stroke: white; -fx-stroke-width: 2;" />
+                              <Circle radius="18" style="-fx-fill: #3B82F6; -fx-stroke: white; -fx-stroke-width: 2;" />
+                              <Circle radius="18" style="-fx-fill: #F59E0B; -fx-stroke: white; -fx-stroke-width: 2;" />
+                              <Label style="-fx-text-fill: #6B7280; -fx-font-size: 14px; -fx-padding: 0 0 0 12;" text="+7" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT">
+                     <children>
+                        <Label fx:id="lblSubTitle" style="-fx-text-fill: #9CA3AF; -fx-font-size: 14px;" text="Health Mobile App" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </top>
+         <center>
+            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox fillHeight="false" spacing="24" style="-fx-padding: 24;">
+                     <children>
+                        <VBox prefWidth="320" spacing="16" style="-fx-background-color: transparent;">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" spacing="12">
+                                 <children>
+                                    <Label style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #374151;" text="TODO" />
+                                    <Label style="-fx-background-color: #E5E7EB; -fx-text-fill: #6B7280; -fx-background-radius: 12; -fx-padding: 4 10; -fx-font-size: 12px;" text="5" />
+                                    <Region HBox.hgrow="ALWAYS" />
+                                    <Label style="-fx-font-size: 18px; -fx-text-fill: #9CA3AF; -fx-cursor: hand;" text="⋯" />
+                                    <JFXButton onAction="#onAddTaskClicked">
+                                       <styleClass>
+                                          <String fx:value="header-btn" />
+                                          <String fx:value="icon-only" />
+                                          <String fx:value="not-focused" />
+                                       </styleClass>
+                                       <graphic>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="➕" />
+                                       </graphic>
+                                    </JFXButton>
+                                 </children>
+                              </HBox>
+                              <Separator styleClass="red" />
+                              <VBox fx:id="todoContainer" spacing="16">
+                           <!-- Task cards will be added here programmatically -->
+                        </VBox>
+                              <Button onAction="#onAddTaskClicked" prefWidth="320" style="-fx-background-color: transparent; -fx-border-color: #D1D5DB; -fx-border-width: 2; -fx-border-style: dashed; -fx-border-radius: 12; -fx-background-radius: 12; -fx-padding: 24; -fx-text-fill: #9CA3AF; -fx-font-size: 14px;" text="+ Add Card" />
+                           </children>
+                        </VBox>
+                        <VBox prefWidth="320" spacing="16" style="-fx-background-color: transparent;">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" spacing="12">
+                                 <children>
+                                    <Label style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #374151;" text="IN WORK" />
+                                    <Label style="-fx-background-color: #E5E7EB; -fx-text-fill: #6B7280; -fx-background-radius: 12; -fx-padding: 4 10; -fx-font-size: 12px;" text="2" />
+                                    <Region HBox.hgrow="ALWAYS" />
+                                    <Label style="-fx-font-size: 18px; -fx-text-fill: #9CA3AF; -fx-cursor: hand;" text="⋯" />
+                                 </children>
+                              </HBox>
+                              <Separator prefWidth="200.0">
+                                 <styleClass>
+                                    <String fx:value="green" />
+                                    <String fx:value="yellow" />
+                                 </styleClass>
+                              </Separator>
+                              <VBox fx:id="inWorkContainer" spacing="16">
+                                 <Label style="-fx-text-fill: #9CA3AF; -fx-font-size: 14px; -fx-alignment: center;" text="No tasks" />
+                              </VBox>
+                           </children>
+                        </VBox>
+                        <VBox prefWidth="320" spacing="16" style="-fx-background-color: transparent;">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" spacing="12">
+                                 <children>
+                                    <Label style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #374151;" text="IN PROGRESS" />
+                                    <Label style="-fx-background-color: #E5E7EB; -fx-text-fill: #6B7280; -fx-background-radius: 12; -fx-padding: 4 10; -fx-font-size: 12px;" text="2" />
+                                    <Region HBox.hgrow="ALWAYS" />
+                                    <Label style="-fx-font-size: 18px; -fx-text-fill: #9CA3AF; -fx-cursor: hand;" text="⋯" />
+                                 </children>
+                              </HBox>
+                              <Separator prefWidth="200.0">
+                                 <styleClass>
+                                    <String fx:value="separator" />
+                                    <String fx:value="blue" />
+                                 </styleClass>
+                              </Separator>
+                              <VBox fx:id="inProgressContainer" spacing="16">
+                                 <Label style="-fx-text-fill: #9CA3AF; -fx-font-size: 14px; -fx-alignment: center;" text="No tasks" />
+                              </VBox>
+                           </children>
+                        </VBox>
+                        <VBox prefWidth="320" spacing="16" style="-fx-background-color: transparent;">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" spacing="12">
+                                 <children>
+                                    <Label style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #374151;" text="DONE" />
+                                    <Label style="-fx-background-color: #E5E7EB; -fx-text-fill: #6B7280; -fx-background-radius: 12; -fx-padding: 4 10; -fx-font-size: 12px;" text="1" />
+                                    <Region HBox.hgrow="ALWAYS" />
+                                    <Label style="-fx-font-size: 18px; -fx-text-fill: #9CA3AF; -fx-cursor: hand;" text="⋯" />
+                                 </children>
+                              </HBox>
+                              <Separator prefWidth="200.0">
+                                 <styleClass>
+                                    <String fx:value="separator" />
+                                    <String fx:value="green" />
+                                 </styleClass>
+                              </Separator>
+                              <VBox fx:id="doneContainer" spacing="16">
+                                 <Label style="-fx-text-fill: #9CA3AF; -fx-font-size: 14px; -fx-alignment: center;" text="No tasks" />
+                              </VBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>
